@@ -1,183 +1,102 @@
-/* ==========================================
-   PARTTYDOS PROFILE
-   slider.js
-========================================== */
-
-const slidesContainer = document.querySelector(".slides");
+const slides = document.querySelector(".slides");
 const cards = document.querySelectorAll(".card");
 
-const prev = document.getElementById("prev");
 const next = document.getElementById("next");
+const prev = document.getElementById("prev");
 
-let current = 0;
+let page = 0;
 
-function getVisibleCards() {
+const gap = 30;
 
-    if (window.innerWidth <= 768) return 1;
-    if (window.innerWidth <= 1200) return 2;
+function perPage(){
 
-    return 3;
-
-}
-
-function updateSlider() {
-
-    const visible = getVisibleCards();
-
-    const cardWidth =
-        cards[0].offsetWidth + 30;
-
-    slidesContainer.style.transform =
-        `translateX(-${current * cardWidth}px)`;
-
-    slidesContainer.style.transition = ".5s";
-
-    if (current > cards.length - visible) {
-
-        current = 0;
-
-        slidesContainer.style.transform =
-            `translateX(0px)`;
-
-    }
+    return window.innerWidth <= 768 ? 1 : 3;
 
 }
 
-next.addEventListener("click", () => {
+function update(){
 
-    current++;
+    const width = cards[0].offsetWidth + gap;
 
-    updateSlider();
+    slides.style.transform =
+        `translateX(-${page * width * perPage()}px)`;
 
-});
+}
 
-prev.addEventListener("click", () => {
+function maxPage(){
 
-    current--;
+    return Math.ceil(cards.length / perPage()) - 1;
 
-    if (current < 0) {
+}
 
-        current = cards.length - getVisibleCards();
+next.onclick = ()=>{
 
-    }
+    page++;
 
-    updateSlider();
+    if(page > maxPage()) page = 0;
 
-});
+    update();
 
-window.addEventListener("resize", updateSlider);
+}
 
-updateSlider();
+prev.onclick = ()=>{
 
+    page--;
 
-/* ==========================
-   AUTO SLIDE
-========================== */
+    if(page < 0) page = maxPage();
 
-let autoSlide = setInterval(() => {
+    update();
 
-    current++;
+}
 
-    updateSlider();
+window.addEventListener("resize",update);
 
-}, 3500);
+update();
 
+/* AUTOPLAY */
 
-/* ==========================
-   PAUSE ON HOVER
-========================== */
+let auto = setInterval(()=>{
 
-slidesContainer.addEventListener("mouseenter", () => {
+    next.click();
 
-    clearInterval(autoSlide);
+},4000);
 
-});
+/* PAUSE */
 
-slidesContainer.addEventListener("mouseleave", () => {
+document.querySelector(".slider")
+.addEventListener("mouseenter",()=>{
 
-    autoSlide = setInterval(() => {
-
-        current++;
-
-        updateSlider();
-
-    },3500);
+clearInterval(auto);
 
 });
 
+document.querySelector(".slider")
+.addEventListener("mouseleave",()=>{
 
-/* ==========================
-   SWIPE MOBILE
-========================== */
+auto=setInterval(()=>{
 
-let startX = 0;
-let endX = 0;
+next.click();
 
-slidesContainer.addEventListener("touchstart",(e)=>{
+},4000);
+
+});
+
+/* SWIPE */
+
+let startX=0;
+
+slides.addEventListener("touchstart",e=>{
 
 startX=e.touches[0].clientX;
 
 });
 
-slidesContainer.addEventListener("touchmove",(e)=>{
+slides.addEventListener("touchend",e=>{
 
-endX=e.touches[0].clientX;
+const endX=e.changedTouches[0].clientX;
 
-});
+if(startX-endX>50) next.click();
 
-slidesContainer.addEventListener("touchend",()=>{
-
-if(startX-endX>60){
-
-current++;
-
-updateSlider();
-
-}
-
-if(endX-startX>60){
-
-current--;
-
-if(current<0){
-
-current=cards.length-getVisibleCards();
-
-}
-
-updateSlider();
-
-}
-
-});
-
-
-/* ==========================
-   KEYBOARD
-========================== */
-
-document.addEventListener("keydown",(e)=>{
-
-if(e.key==="ArrowRight"){
-
-current++;
-
-updateSlider();
-
-}
-
-if(e.key==="ArrowLeft"){
-
-current--;
-
-if(current<0){
-
-current=cards.length-getVisibleCards();
-
-}
-
-updateSlider();
-
-}
+if(endX-startX>50) prev.click();
 
 });

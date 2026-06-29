@@ -19,3 +19,249 @@
 <p>Strategy Division</p>
 
 </div>
+
+
+<!-- ================= batas ================= -->
+
+/* ==========================================
+   PARTTYDOS PROFILE
+   slider.js
+========================================== */
+
+const slider = document.querySelector(".slider");
+const slides = document.querySelector(".slides");
+const cards = document.querySelectorAll(".card");
+
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+const gap = 30;
+
+let currentPage = 0;
+let startX = 0;
+let endX = 0;
+
+function cardsPerPage(){
+
+    if(window.innerWidth <= 768) return 1;
+
+    return 3;
+
+}
+
+function updateSlider(){
+
+    const perPage = cardsPerPage();
+
+    const cardWidth = cards[0].offsetWidth + gap;
+
+    slides.style.transform =
+    `translateX(-${currentPage * cardWidth * perPage}px)`;
+
+}
+
+function totalPage(){
+
+    return Math.ceil(cards.length/cardsPerPage());
+
+}
+
+next.onclick=()=>{
+
+    currentPage++;
+
+    if(currentPage>=totalPage()){
+
+        currentPage=0;
+
+    }
+
+    updateSlider();
+
+}
+
+prev.onclick=()=>{
+
+    currentPage--;
+
+    if(currentPage<0){
+
+        currentPage=totalPage()-1;
+
+    }
+
+    updateSlider();
+
+}
+
+window.addEventListener("resize",updateSlider);
+
+updateSlider();
+
+/* ---------- AUTO SLIDE ---------- */
+
+let auto = setInterval(()=>{
+
+    next.click();
+
+},4000);
+
+slider.addEventListener("mouseenter",()=>{
+
+    clearInterval(auto);
+
+});
+
+slider.addEventListener("mouseleave",()=>{
+
+    auto=setInterval(()=>{
+
+        next.click();
+
+    },4000);
+
+});
+
+/* ---------- SWIPE MOBILE ---------- */
+
+slides.addEventListener("touchstart",(e)=>{
+
+    startX=e.touches[0].clientX;
+
+});
+
+slides.addEventListener("touchmove",(e)=>{
+
+    endX=e.touches[0].clientX;
+
+});
+
+slides.addEventListener("touchend",()=>{
+
+    let distance=startX-endX;
+
+    if(Math.abs(distance)<50) return;
+
+    if(distance>0){
+
+        next.click();
+
+    }else{
+
+        prev.click();
+
+    }
+
+});
+
+
+/* ==========================
+   AUTO SLIDE
+========================== */
+
+let autoSlide = setInterval(() => {
+
+    current++;
+
+    updateSlider();
+
+}, 3500);
+
+
+/* ==========================
+   PAUSE ON HOVER
+========================== */
+
+slidesContainer.addEventListener("mouseenter", () => {
+
+    clearInterval(autoSlide);
+
+});
+
+slidesContainer.addEventListener("mouseleave", () => {
+
+    autoSlide = setInterval(() => {
+
+        current++;
+
+        updateSlider();
+
+    },3500);
+
+});
+
+
+/* ==========================
+   SWIPE MOBILE
+========================== */
+
+
+
+slidesContainer.addEventListener("touchstart",(e)=>{
+
+startX=e.touches[0].clientX;
+
+});
+
+slidesContainer.addEventListener("touchmove",(e)=>{
+
+endX=e.touches[0].clientX;
+
+});
+
+slidesContainer.addEventListener("touchend",()=>{
+
+if(startX-endX>60){
+
+current++;
+
+updateSlider();
+
+}
+
+if(endX-startX>60){
+
+current--;
+
+if(current<0){
+
+current=cards.length-getVisibleCards();
+
+}
+
+updateSlider();
+
+}
+
+});
+
+
+/* ==========================
+   KEYBOARD
+========================== */
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="ArrowRight"){
+
+current++;
+
+updateSlider();
+
+}
+
+if(e.key==="ArrowLeft"){
+
+current--;
+
+if(current<0){
+
+current=cards.length-getVisibleCards();
+
+}
+
+updateSlider();
+
+}
+
+});

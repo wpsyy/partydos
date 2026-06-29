@@ -292,33 +292,74 @@ section h2{
 ========================== */
 
 .slider{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:30px;
-    overflow:hidden;
-    position:relative;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:25px;
+
+margin-top:60px;
+
+}
+
+
+.slider-view{
+
+width:960px;
+
+overflow:hidden;
+
 }
 
 .slides{
-    display:flex;
-    gap:30px;
-    overflow:hidden;
-    width:100%;
-    transition:.5s;
+
+display:flex;
+
+gap:30px;
+
+transition:transform .7s cubic-bezier(.22,.61,.36,1);
+
 }
 
 .card{
-    width:280px;
-    background:#111;
-    border-radius:15px;
-    overflow:hidden;
-    transition:.4s;
+
+min-width:300px;
+
+flex-shrink:0;
+
+}
+
+.arrow{
+
+width:55px;
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:#980000;
+
+color:#fff;
+
+font-size:26px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.arrow:hover{
+
+transform:scale(1.1);
+
+background:#d30000;
+
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 30px rgba(255,0,0,.3);
+    transform:translateY(-10px) scale(1.03);
 }
 
 .card img{
