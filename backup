@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <img src="assets/portfolio/2.jpg">
 
 <img src="assets/portfolio/3.jpg">
@@ -265,3 +266,26 @@ updateSlider();
 }
 
 });
+=======
+<img src="assets/portfolio/2.jpg">
+
+<img src="assets/portfolio/3.jpg">
+
+<img src="assets/portfolio/4.jpg">
+
+<img src="assets/portfolio/5.jpg">
+
+<img src="assets/portfolio/6.jpg">
+
+<!-- ================= batas ================= -->
+
+<div class="card">
+
+<img src="assets/members/member3.jpg">
+
+<h3>Advisor</h3>
+
+<p>Strategy Division</p>
+
+</div>
+>>>>>>> f9ed47bdf0ffa07dc6185b2481e5d5feef12385b

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ==========================================
    RESPONSIVE.CSS
    PARTTYDOS PROFILE
@@ -328,4 +329,304 @@ height:130vh;
 top:55%;
 }
 
+=======
+/* ==========================================
+   RESPONSIVE.CSS
+   PARTTYDOS PROFILE
+========================================== */
+
+/* ==========================
+   1200px
+========================== */
+
+@media (max-width:1200px){
+
+section{
+padding:100px 7%;
+}
+
+.hero-content h1{
+font-size:70px;
+}
+
+.container{
+gap:40px;
+}
+
+}
+
+/* ==========================
+   992px
+========================== */
+
+@media (max-width:992px){
+
+nav{
+padding:18px 5%;
+flex-direction:column;
+gap:20px;
+}
+
+nav ul{
+gap:25px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+nav li{
+margin:0;
+}
+
+.hero-content h1{
+font-size:58px;
+letter-spacing:6px;
+}
+
+.hero-content p{
+font-size:18px;
+line-height:32px;
+}
+
+.container{
+grid-template-columns:1fr;
+gap:30px;
+}
+
+.title h2{
+text-align:center;
+}
+
+.slider{
+flex-direction:column;
+}
+
+.slides{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.loading-bar{
+width:260px;
+}
+
+}
+
+/* ==========================
+   768px
+========================== */
+
+@media (max-width:768px){
+
+section{
+padding:80px 25px;
+}
+
+section h2{
+font-size:40px;
+margin-bottom:45px;
+}
+
+.logo{
+font-size:24px;
+letter-spacing:4px;
+}
+
+.hero{
+height:100vh;
+}
+
+.hero-content{
+width:90%;
+}
+
+.hero-content h1{
+font-size:48px;
+letter-spacing:4px;
+}
+
+.hero-content p{
+font-size:16px;
+line-height:28px;
+}
+
+.hero button{
+padding:15px 35px;
+font-size:16px;
+}
+
+.loader-logo{
+width:100px;
+}
+
+.loader-content h1{
+font-size:36px;
+letter-spacing:5px;
+}
+
+.loader-content p{
+font-size:14px;
+}
+
+.loading-bar{
+width:220px;
+}
+
+.card{
+width:100%;
+max-width:340px;
+}
+
+.card img{
+height:380px;
+}
+
+.gallery{
+grid-template-columns:1fr;
+}
+
+.gallery img{
+height:240px;
+}
+
+.item{
+padding:25px;
+}
+
+.item h3{
+font-size:24px;
+}
+
+.item p{
+font-size:15px;
+line-height:28px;
+}
+
+footer h2{
+font-size:30px;
+}
+
+footer p{
+font-size:14px;
+}
+
+}
+
+/* ==========================
+   576px
+========================== */
+
+@media (max-width:576px){
+
+nav{
+padding:15px;
+}
+
+nav ul{
+gap:18px;
+}
+
+nav a{
+font-size:14px;
+}
+
+.hero-content h1{
+font-size:38px;
+letter-spacing:3px;
+}
+
+.hero-content p{
+font-size:15px;
+line-height:26px;
+}
+
+.hero button{
+padding:14px 28px;
+font-size:15px;
+}
+
+section h2{
+font-size:32px;
+}
+
+.text{
+font-size:16px;
+line-height:30px;
+}
+
+.card{
+max-width:100%;
+}
+
+.card img{
+height:300px;
+}
+
+#prev,
+#next{
+width:50px;
+height:50px;
+font-size:18px;
+}
+
+footer{
+padding:50px 20px;
+}
+
+}
+
+/* ==========================
+   420px
+========================== */
+
+@media (max-width:420px){
+
+.hero-content h1{
+font-size:30px;
+}
+
+.hero-content p{
+font-size:14px;
+}
+
+.hero button{
+width:100%;
+}
+
+.loader-content h1{
+font-size:28px;
+}
+
+.loading-bar{
+width:180px;
+}
+
+.logo{
+font-size:20px;
+}
+
+section{
+padding:70px 20px;
+}
+
+.gallery img{
+height:210px;
+}
+
+}
+
+/* ==========================
+   LANDSCAPE PHONE
+========================== */
+
+@media (max-height:500px){
+
+.hero{
+height:130vh;
+}
+
+.hero-content{
+top:55%;
+}
+
+>>>>>>> f9ed47bdf0ffa07dc6185b2481e5d5feef12385b
 }
